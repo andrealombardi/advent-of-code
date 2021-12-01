@@ -16,17 +16,16 @@ func main() {
 
 	scanner := bufio.NewScanner(f)
 
-	counter := -1 //ignore the first input
-	previousValue := int64(0)
-	for scanner.Scan(){
+	count := -1 //ignore the first input
+	previous := int64(0)
+	for scanner.Scan() {
 		current, _ := strconv.ParseInt(scanner.Text(), 10, 64)
-		if current > previousValue {
-			counter ++
+		if current > previous {
+			count++
 		}
-		previousValue = current
+		previous = current
 	}
 
-	fmt.Printf("The depth increased %d times", counter)
-
+	fmt.Printf("The depth increased %d times", count)
 
 }

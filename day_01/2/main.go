@@ -12,16 +12,16 @@ func main() {
 	windowSize := 3
 	count := 0
 	depths := loadDepths()
-	current := sum(depths[0:windowSize])
+	previous := sum(depths[0:windowSize])
 
 	for i := 1; i <= len(depths)-windowSize; i++ {
-		next := sum(depths[i : i+windowSize])
+		current := sum(depths[i : i+windowSize])
 
-		if next > current {
+		if current > previous {
 			count++
 		}
 
-		current = next
+		previous = current
 
 	}
 
