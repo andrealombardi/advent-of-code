@@ -38,7 +38,6 @@ func part2(strategy [][]string) {
 }
 
 func calculateScore(s string, t string) int {
-
 	switch true {
 	// rock
 	case s == "A" && t == "X":
@@ -69,7 +68,6 @@ func calculateScore(s string, t string) int {
 }
 
 func calculateOutcome(s string, t string) int {
-
 	switch true {
 	case s == "A" && t == "X":
 		return calculateScore(s, "Z")
