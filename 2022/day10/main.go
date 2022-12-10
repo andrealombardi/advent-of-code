@@ -30,14 +30,13 @@ func part1() {
 
 	for _, line := range lines {
 		l := strings.Split(line, " ")
+
+		cycle()
 		if l[0] == "noop" {
-			cycle()
 			continue
 		}
 		cycle()
-		cycle()
-		v := toInt(l[1])
-		X = X + v
+		X = X + toInt(l[1])
 	}
 	fmt.Println(S)
 
@@ -65,15 +64,12 @@ func part2() {
 
 	for _, line := range lines {
 		l := strings.Split(line, " ")
+		draw()
 		if l[0] == "noop" {
-			draw()
 			continue
 		}
 		draw()
-		draw()
-
-		v := toInt(l[1])
-		X = X + v
+		X = X + toInt(l[1])
 	}
 }
 
