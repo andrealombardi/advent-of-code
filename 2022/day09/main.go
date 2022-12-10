@@ -18,13 +18,18 @@ func main() {
 	part2()
 }
 
-var h, t point
-var positions = make(map[point]int, 0)
+func part1() {
+	calculate(2)
+}
 
 func part2() {
+	calculate(10)
+}
+
+func calculate(numKnots int) {
 	lines := strings.Split(input, "\n")
-	knots := make([]point, 10)
-	positions = make(map[point]int, 0)
+	knots := make([]point, numKnots)
+	positions := make(map[point]int, 0)
 	positions[point{0, 0}] = 0
 
 	for _, line := range lines {
@@ -33,7 +38,7 @@ func part2() {
 		fmt.Sscanf(line, "%s %d", &direction, &distance)
 
 		for i := 0; i < distance; i++ {
-			move2(direction, &knots[0])
+			moveHead(direction, &knots[0])
 			for j := 0; j < len(knots)-1; j++ {
 				t := moveTail(knots[j], knots[j+1])
 				knots[j+1] = t
@@ -45,7 +50,7 @@ func part2() {
 	fmt.Println(len(positions))
 }
 
-func move2(direction string, p *point) {
+func moveHead(direction string, p *point) {
 	switch direction {
 	case "R":
 		p.x++
@@ -81,51 +86,5 @@ func moveTail(head, tail point) point {
 	default:
 		return tail
 	}
-
-}
-
-func part1() {
-	lines := strings.Split(input, "\n")
-	positions = make(map[point]int, 0)
-	positions[t] = 0
-
-	for _, line := range lines {
-		direction := ""
-		distance := 0
-		fmt.Sscanf(line, "%s %d", &direction, &distance)
-
-		for i := 0; i < distance; i++ {
-			move(direction)
-
-		}
-
-	}
-	fmt.Println(len(positions))
-}
-
-func move(direction string) {
-	switch direction {
-	case "R":
-		if t.x < h.x {
-			t = h
-		}
-		h = point{h.x + 1, h.y}
-	case "L":
-		if t.x > h.x {
-			t = h
-		}
-		h = point{h.x - 1, h.y}
-	case "U":
-		if t.y < h.y {
-			t = h
-		}
-		h = point{h.x, h.y + 1}
-	case "D":
-		if t.y > h.y {
-			t = h
-		}
-		h = point{h.x, h.y - 1}
-	}
-	positions[t] = positions[t] + 1
 
 }
